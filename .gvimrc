@@ -1,23 +1,23 @@
 if has('gui_macvim')
 
-    "常にタブを表示
+    "always show tab
     set showtabline=2
 
-    "透明度を変更
+    "change transparency
     set transparency=3
 
-    "タブ移動
+    "moving tab
     map <silent> <C-h> :tabnext<CR>
     map <silent> <C-l> :tabprev<CR>
 
-    set imdisable	               " IMを無効化
-    set guioptions+=a              "ビジュアルモードの選択範囲をclipbordに贈"る
-    set guioptions-=T              "ツールバーはいらない
-    "au GUIEnter * set fullscreen "フルスクリーンで起動
+    set imdisable	               " disenable IM
+    set guioptions+=a                  " sent block selected in visual-mode to clipboard
+    set guioptions-=T                  " I dont need Tool-bar
+    "au GUIEnter * set fullscreen      " boot full screen
     set guifont=Monaco:h12
-    set columns=188                "MBAだとこのくらい
+    set columns=188                    " just MBA 11'inch
     set lines=45
     set nobackup
-    set visualbell t_vb=           "警告音は要らない
+    set visualbell t_vb=               " I dont need beep sound
     colorscheme wombat256mod
 endif
