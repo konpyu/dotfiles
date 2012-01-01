@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
+[submodule ".vim/bundle/vim-smartchr"]
+	path = .vim/bundle/vim-smartchr
+	url = git://github.com/kana/vim-smartchr.git
