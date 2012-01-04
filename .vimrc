@@ -52,6 +52,8 @@ set display+=lastline
 set hlsearch
 set mouse=a                                " enable mouse scroll
 set scrolloff=4
+set clipboard+=autoselect
+set clipboard+=unnamed
 let loaded_matchparen = 1
 
 "-------------------------------------------------------------------------------------------------
