@@ -57,6 +57,11 @@ set clipboard+=unnamed
 let loaded_matchparen = 1
 
 "-------------------------------------------------------------------------------------------------
+" vim-smartchr Settings
+"-------------------------------------------------------------------------------------------------
+inoremap <expr> = smartchr#loop(' = ', '=' , ' == ')
+
+"-------------------------------------------------------------------------------------------------
 " NERDTree Settings
 "-------------------------------------------------------------------------------------------------
 let NERDTreeShowFiles=1
@@ -64,6 +69,15 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 "let NERDTreeQuitOnOpen=1
 command! Tr NERDTree
+
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+
+"-------------------------------------------------------------------------------------------------
+" Filetype Setting
+"-------------------------------------------------------------------------------------------------
+autocmd FileType ruby set shiftwidth=2 tabstop=2
+autocmd FileType perl :compiler perl
+autocmd Filetype javascript :set dictionary=$HOME/.vim/dict/ti.dict
 
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -92,7 +106,6 @@ autocmd FileType sql  :set  encoding=sjis
 autocmd FileType sql  :set  termencoding=euc-jp
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
 
 "-------------------------------------------------------------------------------------------------
 " character type
@@ -148,7 +161,6 @@ if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-autocmd Filetype javascript :set dictionary=$HOME/.vim/dict/ti.dict
 let g:titanium_android_sdk_path='~/android-sdk-mac_x86'
 
 "-------------------------------------------------------------------------------------------------
