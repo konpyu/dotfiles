@@ -70,11 +70,12 @@ let NERDTreeShowBookmarks=1
 "let NERDTreeQuitOnOpen=1
 command! Tr NERDTree
 
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-
 "-------------------------------------------------------------------------------------------------
 " Filetype Setting
 "-------------------------------------------------------------------------------------------------
+filetype on
+filetype indent on
+filetype plugin on
 autocmd FileType ruby set shiftwidth=2 tabstop=2
 autocmd FileType perl :compiler perl
 autocmd Filetype javascript :set dictionary=$HOME/.vim/dict/ti.dict
@@ -94,21 +95,15 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 syntax on
 colorscheme wombat256mod
 
-filetype on
-filetype indent on
-filetype plugin on
-
-autocmd FileType ruby set shiftwidth=2 tabstop=2
-autocmd FileType perl :compiler perl
-autocmd FileType html :set  encoding=sjis
-autocmd FileType perl :set  encoding=euc-jp
-autocmd FileType sql  :set  encoding=sjis
-autocmd FileType sql  :set  termencoding=euc-jp
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
+"autocmd FileType html :set  encoding=sjis
+"autocmd FileType perl :set  encoding=euc-jp
+"autocmd FileType sql  :set  encoding=sjis
+"autocmd FileType sql  :set  termencoding=euc-jp
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"
 "-------------------------------------------------------------------------------------------------
-" character type
+" character type setting
 "-------------------------------------------------------------------------------------------------
 if &encoding !=# 'utf-8'
   set encoding=japan
@@ -165,7 +160,8 @@ let g:titanium_android_sdk_path='~/android-sdk-mac_x86'
 
 "-------------------------------------------------------------------------------------------------
 " commentout area that select in visual mode
-" visualize >> press ,#
+" press ,# ,/
+" to clear , press ,c
 "-------------------------------------------------------------------------------------------------
 vmap ,# :s/^/#/<CR>:nohlsearch<CR>
 vmap ,/ :s/^/\/\//<CR>:nohlsearch<CR>
@@ -179,3 +175,21 @@ vmap ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>:nohlsearch<CR>
 
 vmap ,b v`<I<CR><esc>k0i/*<ESC>`>j0i*/<CR><esc><ESC>
 vmap ,h v`<I<CR><esc>k0i<!--<ESC>`>j0i--><CR><esc><ESC>
+
+"--------------------------------------------------------------------------
+" Unite.vim
+"--------------------------------------------------------------------------
+"let g:unite_enable_start_insert=1
+command! UU Unite buffer file_mru
+command! UM Unite file_mru
+command! UB Unite buffer
+command! UF Unite -buffer-name=register register
+
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+
+" ======== End Of File ========
