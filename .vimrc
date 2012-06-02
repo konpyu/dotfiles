@@ -69,6 +69,8 @@ nmap <Space>v :vsplit<CR><C-w><C-w>:ls<CR>:buffer
 nmap <C-t> :NERDTree<CR>
 nmap <C-p> :bp<CR>
 nmap <C-n> :bn<CR>
+nmap L $
+nmap H 0
 
 "-------------------------------------------------------------------------------------------------
 " vim-smartchr Settings
