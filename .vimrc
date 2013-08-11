@@ -56,6 +56,10 @@ set clipboard+=autoselect
 set clipboard+=unnamed
 let loaded_matchparen = 1
 
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
+colorscheme molokai
+
 "-------------------------------------------------------------------------------------------------
 " Vundle
 "-------------------------------------------------------------------------------------------------
@@ -66,7 +70,22 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-rails'
 Bundle 'scrooloose/nerdtree'
 Bundle 'molokai'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle 'tpope/vim-surround'
 
+let g:neocomplcache_enable_at_startup = 1
+if !exists("g:neocomplcache_force_omni_patterns")
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+
+" with clang-completion (see neocomplecache FAQ)
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_force_omni_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)'
 "-------------------------------------------------------------------------------------------------
 " mappings
 "-------------------------------------------------------------------------------------------------
@@ -96,11 +115,17 @@ command! Tr NERDTree
 filetype on
 autocmd FileType ruby set shiftwidth=2 tabstop=2
 autocmd FileType perl :compiler perl
-autocmd Filetype javascript :set dictionary=$HOME/.vim/dict/ti.dict
 
-"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-"inoremap <Esc> <Esc>gg`]
+augroup filetypedetect
+    autocmd! BufNewFile,BufRead *.t    setf perl
+    autocmd! BufNewFile,BufRead *.psgi setf perl
+    autocmd! BufNewFile,BufRead *.jake setf javascript
+    autocmd! BufNewFile,BufRead *.ts   setf javascript
+    autocmd! BufNewFile,BufRead *.ejs  setf html
+    autocmd! BufNewFile,BufRead *.{tt,mt}   setf html
+    autocmd! BufNewFile,BufRead *.md   setf markdown
+augroup END
+
 
 if has('multi_byte_ime')
   highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
@@ -111,33 +136,14 @@ endif
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
 syntax on
-colorscheme molokai
-
-"autocmd FileType html :set  encoding=sjis
-"autocmd FileType perl :set  encoding=euc-jp
-"autocmd FileType sql  :set  encoding=sjis
-"autocmd FileType sql  :set  termencoding=euc-jp
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
-if has('autocmd')
-  function! AU_ReCheck_FENC()
-    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-      let &fileencoding=&encoding
-    endif
-  endfunction
-  autocmd BufReadPost * call AU_ReCheck_FENC()
-endif
 
 set fileformats=unix,dos,mac
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-let g:titanium_android_sdk_path='~/android-sdk-mac_x86'
-
 "-------------------------------------------------------------------------------------------------
-" commentout area that select in visual mode
+" commentout visual mode
 " press ,# ,/
 " to clear , press ,c
 "-------------------------------------------------------------------------------------------------
@@ -157,7 +163,7 @@ vmap ,h v`<I<CR><esc>k0i<!--<ESC>`>j0i--><CR><esc><ESC>
 "--------------------------------------------------------------------------
 " Unite.vim
 "--------------------------------------------------------------------------
-"let g:unite_enable_start_insert=1
+let g:unite_enable_start_insert=1
 command! UU Unite buffer file_mru
 command! UM Unite file_mru
 command! UB Unite buffer
