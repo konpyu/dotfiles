@@ -165,9 +165,11 @@ vmap ,h v`<I<CR><esc>k0i<!--<ESC>`>j0i--><CR><esc><ESC>
 "--------------------------------------------------------------------------
 let g:unite_enable_start_insert=1
 command! UU Unite buffer file_mru
-command! UM Unite file_mru
 command! UB Unite buffer
 command! UF Unite -buffer-name=register register
+command! UC Unite rails/controller
+command! UV Unite rails/view
+command! UM Unite rails/model
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
