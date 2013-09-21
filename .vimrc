@@ -76,6 +76,7 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle 'tpope/vim-surround'
+Bundle 'mileszs/ack.vim'
 
 let g:neocomplcache_enable_at_startup = 1
 if !exists("g:neocomplcache_force_omni_patterns")
