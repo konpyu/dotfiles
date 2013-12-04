@@ -110,6 +110,7 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 command! Tr NERDTree
 map <C-n> :NERDTreeToggle<CR>
+autocmd vimenter * if !argc() | NERDTree | endif
 
 "-------------------------------------------------------------------------------------------------
 " Filetype Setting
