@@ -22,4 +22,5 @@ if has('gui_macvim')
     set nobackup
     set visualbell t_vb=               " I dont need beep sound
     colorscheme wombat256mod
+    set regexpengine=1                 " avoid crush
 endif
