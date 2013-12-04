@@ -109,6 +109,7 @@ let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 command! Tr NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 "-------------------------------------------------------------------------------------------------
 " Filetype Setting
