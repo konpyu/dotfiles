@@ -1,0 +1,8 @@
+[user]
+	name = konpyu
+	email = konpyu@gmail.com
+[core]
+	editor = /usr/bin/vim
+
+[color]
+        ui = auto
