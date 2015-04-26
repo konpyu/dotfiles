@@ -58,25 +58,24 @@ let loaded_matchparen = 1
 
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
-colorscheme molokai
-
 "-------------------------------------------------------------------------------------------------
 " Vundle
 "-------------------------------------------------------------------------------------------------
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-filetype plugin indent on
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-rails'
-Bundle 'scrooloose/nerdtree'
-Bundle 'molokai'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/neocomplcache.vim'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle 'tpope/vim-surround'
-Bundle 'mileszs/ack.vim'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'Shougo/neocomplcache.vim'
+call vundle#end()            " required
+syntax enable
+filetype plugin indent on    " required
+
 
 let g:neocomplcache_enable_at_startup = 1
 if !exists("g:neocomplcache_force_omni_patterns")
@@ -87,6 +86,16 @@ endif
 let g:neocomplcache_force_overwrite_completefunc = 1
 let g:neocomplcache_force_omni_patterns.c =
       \ '[^.[:digit:] *\t]\%(\.\|->\)'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
+    \ 'coffee' : $HOME.'/.vim/dict/javascript.dict',
+    \ 'ruby' : $HOME.'/.vim/dict/ruby.dict',
+    \ }
+
+
 "-------------------------------------------------------------------------------------------------
 " mappings
 "-------------------------------------------------------------------------------------------------
@@ -126,6 +135,7 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.ts   setf javascript
     autocmd! BufNewFile,BufRead *.ejs  setf html
     autocmd! BufNewFile,BufRead *.{tt,mt}   setf html
+    autocmd! BufNewFile,BufRead *.md   setf markdown
     autocmd! BufNewFile,BufRead *.md   setf markdown
 augroup END
 
@@ -218,3 +228,5 @@ function! s:GetHighlight(hi)
   let hl = substitute(hl, 'xxx', '', '')
   return hl
 endfunction
+colorscheme molokai
+set background=dark
